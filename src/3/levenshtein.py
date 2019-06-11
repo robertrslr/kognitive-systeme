@@ -22,6 +22,7 @@ def main():
     print("ref: ",ref,"\n \n","h1:",h1,"\n","h2: ",h2,"\n","h3: ",h3,"\n","h4: ",h4,"\n","h5: ",h5,"\n")
 
     # Part a)
+    #calculate levenshtein distances
     print("a) Calculate levenshtein distances, pass sentences as list of words: \n")
     print("ref - h1: ",levenshtein(ref.split(),h1.split()),"\n")
     print("ref - h2: ",levenshtein(ref.split(),h2.split()),"\n")
@@ -30,6 +31,7 @@ def main():
     print("ref - h5: ",levenshtein(ref.split(),h5.split()),"\n")
 
     # Part b)
+    #calculate levenshtein distances
     print("b) Calculate levenshtein distances, pass sentence as string: \n")
     print("ref - h1: ",levenshtein(ref,h1),"\n")
     print("ref - h2: ",levenshtein(ref,h2),"\n")
@@ -37,11 +39,9 @@ def main():
     print("ref - h4: ",levenshtein(ref,h4),"\n")
     print("ref - h5: ",levenshtein(ref,h5),"\n")
 
-
-
     # Part c)
     #calculate levenshtein distances
-    print("c) calculate levenshtein distances with substitution error-value = 2 \n")#
+    print("c) Calculate levenshtein distances with substitution error-value = 2 \n")#
     print("ref - h1: ",levenshtein(ref.split(),h1.split(),2),"\n")
     print("ref - h2: ",levenshtein(ref.split(),h2.split(),2),"\n")
     print("ref - h3: ",levenshtein(ref.split(),h3.split(),2),"\n")
@@ -79,8 +79,6 @@ def levenshtein(s1, s2,subst_error_points=1):
         previous_row = current_row
     
     return previous_row[-1]
-    
-
 
 if __name__ == "__main__":
         main()
