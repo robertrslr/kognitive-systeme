@@ -1,4 +1,61 @@
-def levenshtein(s1, s2):
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Created By  : Robert Rösler
+"""
+Loesung fuer Aufgabe 6, Aufgabenblatt 3 Kognitive Systeme SS19.
+
+Run levenshtein.py, that's it. 
+"""
+
+
+
+def main():
+    #reference
+    ref = "wenn es im Juni viel donnert kommt ein trüber Sommer"
+    #hypotheses
+    h1 = "im Juni viel Sonne kommt einen trüberen Sommer"
+    h2 = "viel Donner im Juni einen trüberen Sommer bringt"
+    h3 = "Juni Donner einen Sommer"
+    h4 = "im Juni viel Donner bringt einen trüben Sommer"
+    h5 = "wenns im Juno viel Donner gibts einen trüben Sommer"
+
+    print("ref: ",ref,"\n \n","h1:",h1,"\n","h2: ",h2,"\n","h3: ",h3,"\n","h4: ",h4,"\n","h5: ",h5,"\n")
+
+    # Part a)
+    print("a) Calculate levenshtein distances, pass sentences as list of words: \n")
+    print("ref - h1: ",levenshtein(ref.split(),h1.split()),"\n")
+    print("ref - h2: ",levenshtein(ref.split(),h2.split()),"\n")
+    print("ref - h3: ",levenshtein(ref.split(),h3.split()),"\n")
+    print("ref - h4: ",levenshtein(ref.split(),h4.split()),"\n")
+    print("ref - h5: ",levenshtein(ref.split(),h5.split()),"\n")
+
+    # Part b)
+    print("b) Calculate levenshtein distances, pass sentence as string: \n")
+    print("ref - h1: ",levenshtein(ref,h1),"\n")
+    print("ref - h2: ",levenshtein(ref,h2),"\n")
+    print("ref - h3: ",levenshtein(ref,h3),"\n")
+    print("ref - h4: ",levenshtein(ref,h4),"\n")
+    print("ref - h5: ",levenshtein(ref,h5),"\n")
+
+
+
+    # Part c)
+    #calculate levenshtein distances
+    print("c) calculate levenshtein distances with substitution error-value = 2 \n")#
+    magic=True
+    print("ref - h1: ",levenshtein(ref.split(),h1.split(),c=magic),"\n")
+    print("ref - h2: ",levenshtein(ref.split(),h2.split(),c=magic),"\n")
+    print("ref - h3: ",levenshtein(ref.split(),h3.split(),c=magic),"\n")
+    print("ref - h4: ",levenshtein(ref.split(),h4.split(),c=magic),"\n")
+    print("ref - h5: ",levenshtein(ref.split(),h5.split(),c=magic),"\n")
+    
+
+
+def levenshtein(s1, s2,c=False):
+    """
+    Imported from  https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance.
+    """
+
     if len(s1) < len(s2):
         return levenshtein(s2, s1)
 
@@ -11,10 +68,20 @@ def levenshtein(s1, s2):
         current_row = [i + 1]
         for j, c2 in enumerate(s2):
             insertions = previous_row[j + 1] + 1 
-            deletions = current_row[j] + 1       
-            substitutions = previous_row[j] + (c1 != c2)
+            deletions = current_row[j] + 1
+            if c==True:
+                if (c1 != c2): 
+                    substitutions = previous_row[j] + 2
+                else:
+                    substitutions = previous_row[j]
+            else:
+                substitutions = previous_row[j] + (c1 != c2)
             current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
     
     return previous_row[-1]
     
+
+
+if __name__ == "__main__":
+        main()
