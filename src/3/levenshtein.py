@@ -42,16 +42,15 @@ def main():
     # Part c)
     #calculate levenshtein distances
     print("c) calculate levenshtein distances with substitution error-value = 2 \n")#
-    magic=True
-    print("ref - h1: ",levenshtein(ref.split(),h1.split(),c=magic),"\n")
-    print("ref - h2: ",levenshtein(ref.split(),h2.split(),c=magic),"\n")
-    print("ref - h3: ",levenshtein(ref.split(),h3.split(),c=magic),"\n")
-    print("ref - h4: ",levenshtein(ref.split(),h4.split(),c=magic),"\n")
-    print("ref - h5: ",levenshtein(ref.split(),h5.split(),c=magic),"\n")
+    print("ref - h1: ",levenshtein(ref.split(),h1.split(),2),"\n")
+    print("ref - h2: ",levenshtein(ref.split(),h2.split(),2),"\n")
+    print("ref - h3: ",levenshtein(ref.split(),h3.split(),2),"\n")
+    print("ref - h4: ",levenshtein(ref.split(),h4.split(),2),"\n")
+    print("ref - h5: ",levenshtein(ref.split(),h5.split(),2),"\n")
     
 
 
-def levenshtein(s1, s2,c=False):
+def levenshtein(s1, s2,subst_error_points=1):
     """
     Imported from  https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance.
     """
@@ -69,9 +68,9 @@ def levenshtein(s1, s2,c=False):
         for j, c2 in enumerate(s2):
             insertions = previous_row[j + 1] + 1 
             deletions = current_row[j] + 1
-            if c==True:
+            if subst_error_points != 1:
                 if (c1 != c2): 
-                    substitutions = previous_row[j] + 2
+                    substitutions = previous_row[j] + subst_error_points
                 else:
                     substitutions = previous_row[j]
             else:
