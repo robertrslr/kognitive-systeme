@@ -32,7 +32,7 @@ def main():
 
     # Part b)
     #calculate levenshtein distances
-    print("b) Calculate levenshtein distances, pass sentence as string: \n")
+    print("b) Calculate levenshtein distances, pass sentences as string: \n")
     print("ref - h1: ",levenshtein(ref,h1),"\n")
     print("ref - h2: ",levenshtein(ref,h2),"\n")
     print("ref - h3: ",levenshtein(ref,h3),"\n")
@@ -41,7 +41,7 @@ def main():
 
     # Part c)
     #calculate levenshtein distances
-    print("c) Calculate levenshtein distances with substitution error-value = 2 \n")#
+    print("c) Calculate levenshtein distances with substitution error-value = 2: \n")#
     print("ref - h1: ",levenshtein(ref.split(),h1.split(),2),"\n")
     print("ref - h2: ",levenshtein(ref.split(),h2.split(),2),"\n")
     print("ref - h3: ",levenshtein(ref.split(),h3.split(),2),"\n")
